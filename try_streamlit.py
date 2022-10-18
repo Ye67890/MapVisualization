@@ -14,7 +14,7 @@ st.write("""
 """, load_data())
 
 st.subheader('Map of all pickups')
-st.map(data, 10)
+st.map(load_data(), 10)
 
 # st.subheader('Altair chart')
 # c = alt.Chart(data).mark_circle().encode(
@@ -35,7 +35,7 @@ st.pydeck_chart(pdk.Deck(
     layers=[
         pdk.Layer(
            'HexagonLayer',
-           data=data,
+           data=load_data(),
            get_position='[lon, lat]',
            get_elevation=['label'],
            radius=200,
@@ -46,7 +46,7 @@ st.pydeck_chart(pdk.Deck(
         ),
         pdk.Layer(
             'ScatterplotLayer',
-            data=data,
+            data=load_data(),
             get_position='[lon, lat]',
             get_elevation=['label'],
             get_color='[200, 30, 0, 160]',
