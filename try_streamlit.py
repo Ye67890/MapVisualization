@@ -8,13 +8,15 @@ def load_data():
          data = pd.read_csv('福-經緯度.csv')
          return data
 
+data = load_data()
+
 st.write("""
 # 第一個應用程式
 嘗試創建**表格**
-""", load_data())
+""", data)
 
 st.subheader('Map of all pickups')
-st.map(load_data(), 10)
+st.map(data, 10)
 
 # st.subheader('Altair chart')
 # c = alt.Chart(data).mark_circle().encode(
@@ -35,7 +37,7 @@ st.pydeck_chart(pdk.Deck(
     layers=[
         pdk.Layer(
            'HexagonLayer',
-           data=load_data(),
+           data=data,
            get_position='[lon, lat]',
            get_elevation=['label'],
            radius=200,
@@ -46,7 +48,7 @@ st.pydeck_chart(pdk.Deck(
         ),
         pdk.Layer(
             'ScatterplotLayer',
-            data=load_data(),
+            data=data,
             get_position='[lon, lat]',
             get_elevation=['label'],
             get_color='[200, 30, 0, 160]',
