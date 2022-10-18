@@ -9,5 +9,4 @@ def load_data():
 st.write("""
 # 第一個應用程式
 嘗試創建**表格**
-""",
-         data)
+""", load_data())
