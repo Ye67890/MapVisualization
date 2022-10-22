@@ -10,7 +10,7 @@ def load_data():
     data = pd.read_csv(DATA_URL, nrows = None)
     # lowercase = lambda x: str(x).lower()
     # data.rename(lowercase, axis = "columns", inplace = True)
-    data[DATE_TIME] = pd.to_datetime(data[DATE_TIME])
+#     data[DATE_TIME] = pd.to_datetime(data[DATE_TIME])
     return data
 
 data = load_data()
