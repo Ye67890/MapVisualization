@@ -3,10 +3,15 @@ import pandas as pd
 import altair as alt
 import pydeck as pdk
 
+DATA_URL = "https://hellobucketbucket.s3.ap-northeast-1.amazonaws.com/%E7%A6%8F_date_lat_lng.csv"
+
 @st.cache
 def load_data():
-         data = pd.read_csv('福-經緯度.csv')
-         return data
+    data = pd.read_csv(DATA_URL, nrows = None)
+    # lowercase = lambda x: str(x).lower()
+    # data.rename(lowercase, axis = "columns", inplace = True)
+    data[DATE_TIME] = pd.to_datetime(data[DATE_TIME])
+    return data
 
 data = load_data()
 
@@ -46,13 +51,13 @@ st.pydeck_chart(pdk.Deck(
            pickable=True,
            extruded=True,
         ),
-        pdk.Layer(
-            'ScatterplotLayer',
-            data=data,
-            get_position='[lon, lat]',
-#             get_elevation=['label'],
-            get_color='[200, 30, 0, 160]',
-            get_radius=200,
-        ),
+#         pdk.Layer(
+#             'ScatterplotLayer',
+#             data=data,
+#             get_position='[lon, lat]',
+# #             get_elevation=['label'],
+#             get_color='[200, 30, 0, 160]',
+#             get_radius=200,
+#         ),
     ],
 ))
